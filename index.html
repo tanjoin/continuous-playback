@@ -34,6 +34,7 @@
         if (index < videos.length) {
           this.setAttribute("video_index", index);
           this.setAttribute("src", videos[index]);
+          document.title = videos[index].replace(".mp4", "");
           this.play();
         }
       };
