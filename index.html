@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>VIDEO</title>
+</head>
+
+<body>
+    <video id="video_player" video_index="0" controls></video>
+</body>
+<script>
+    var videos = [
+        "video001.mp4",
+        "video002.mp4",
+        "video003.mp4",
+        "video004.mp4",
+        "video005.mp4",
+        "video006.mp4",
+        "video007.mp4",
+        "video008.mp4",
+        "video009.mp4",
+        "video010.mp4",
+        "video011.mp4",
+    ];
+
+    window.onload = function() {
+      var videoPlayer = document.getElementById('video_player');
+      videoPlayer.setAttribute("src", videos[0]);
+      videoPlayer.setAttribute("video_index", 0);
+      videoPlayer.onended = function(e) {
+        var index = parseInt(this.getAttribute("video_index"));
+        index = index + 1;
+        if (index < videos.length) {
+          this.setAttribute("video_index", index);
+          this.setAttribute("src", videos[index]);
+          this.play();
+        }
+      };
+    };
+</script>
+
+</html>
