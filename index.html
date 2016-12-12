@@ -8,37 +8,29 @@
 
 <body>
     <video id="video_player" video_index="0" controls></video>
+    <br>
+    <input type="button" onclick="reset()" value="リセット">
 </body>
+<script src="lib/continuous.js"></script>
 <script>
     var videos = [
-        "video001.mp4",
-        "video002.mp4",
-        "video003.mp4",
-        "video004.mp4",
-        "video005.mp4",
-        "video006.mp4",
-        "video007.mp4",
-        "video008.mp4",
-        "video009.mp4",
-        "video010.mp4",
-        "video011.mp4",
+        "./video/sample01.mp4",
+        "./video/sample02.mp4"
     ];
 
+    var player;
+    var videoPlayer = document.getElementById('video_player');
+
     window.onload = function() {
-      var videoPlayer = document.getElementById('video_player');
-      videoPlayer.setAttribute("src", videos[0]);
-      videoPlayer.setAttribute("video_index", 0);
-      videoPlayer.onended = function(e) {
-        var index = parseInt(this.getAttribute("video_index"));
-        index = index + 1;
-        if (index < videos.length) {
-          this.setAttribute("video_index", index);
-          this.setAttribute("src", videos[index]);
-          document.title = videos[index].replace(".mp4", "");
-          this.play();
-        }
-      };
+      videoPlayer = document.getElementById('video_player');
+      player = new Continuous(videoPlayer, videos, true, function(index, video) {
+        document.title = video.replace(".mp4", "");
+      });
     };
+
+    var reset = function() {
+      player.playAfterReset();
+    }
 </script>
 
 </html>
