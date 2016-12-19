@@ -31,6 +31,17 @@
     var reset = function() {
       player.playAfterReset();
     }
+
+    document.addEventListener('keydown', function(event) {
+      console.log(event.key);
+      if (event.key == ' ') {
+        if (videoPlayer.paused) {
+          videoPlayer.play();
+        } else {
+          videoPlayer.pause();
+        }
+      }
+    });
 </script>
 
 </html>
